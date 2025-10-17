@@ -1,0 +1,49 @@
+on:
+  push:
+    tags:
+      - alpine-lts/*
+jobs:
+  build-alpine-lts:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: ./alpine.sh
+        env:
+          # https://gitlab.alpinelinux.org/alpine/aports/-/tree/master/main/linux-lts
+          APORTS_COMMIT: 60da4253ce7fa1749cb48133dfa6786d554b8e04
+          # https://hub.docker.com/_/alpine
+          ALPINE_TAG: 20250108
+          # https://hub.docker.com/_/debian
+          DEBIAN_TAG: unstable-20250929
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alpine-lts
+          path: |
+            aports/main/linux-lts/src/*.deb
+            aports/main/linux-lts/src/linux-upstream_*.*
+  attest-alpine-lts:
+    runs-on: ubuntu-24.04
+    needs: build-alpine-lts
+    permissions:
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: alpine-lts
+          pattern: linux-upstream_*.changes
+      - uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: linux-upstream_*.changes
+  release-alpine-lts:
+    runs-on: ubuntu-24.04
+    needs: attest-alpine-lts
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: alpine-lts
+      - run: gh -R ${{ github.repository }} release create ${{ github.ref_name }} *.deb linux-upstream_*.*
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
