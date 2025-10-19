@@ -19,7 +19,6 @@ set -eux
 apt-get update
 apt-get install -y build-essential \
 	debhelper bc bison cpio flex kmod libelf-dev:native libssl-dev:native libssl-dev rsync
-# apt-get build-dep linux
 cd /root/aports/main/linux-lts/src/build-lts.x86
 ../linux-*/scripts/config \
 	-d CONFIG_MODULE_COMPRESS_GZIP \
