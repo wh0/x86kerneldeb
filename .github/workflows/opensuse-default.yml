@@ -1,0 +1,45 @@
+on:
+  push:
+    tags:
+      - opensuse-default/*
+jobs:
+  build-opensuse-default:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: ./opensuse.sh
+        env:
+          # https://hub.docker.com/_/debian
+          DEBIAN_TAG: unstable-20250929
+      - uses: actions/upload-artifact@v4
+        with:
+          name: opensuse-default
+          path: |
+            packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/*.deb
+            packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.*
+  attest-opensuse-default:
+    runs-on: ubuntu-24.04
+    needs: build-opensuse-default
+    permissions:
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: opensuse-default
+          pattern: kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.changes
+      - uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.changes
+  release-opensuse-default:
+    runs-on: ubuntu-24.04
+    needs: attest-opensuse-default
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: opensuse-default
+      - run: gh -R ${{ github.repository }} release create ${{ github.ref_name }} kernel-default-*-build/kernel-default-*/linux-*/*.deb kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.*
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
