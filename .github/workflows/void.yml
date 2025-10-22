@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
+      - run: |
+          cat /mnt/DATALOSS_WARNING_README.txt
+          sudo mkdir /mnt/builddir
+          ln -s /mnt/builddir .
       - run: ./void.sh
         env:
           # https://github.com/void-linux/void-packages/blob/master/srcpkgs/linux/template
