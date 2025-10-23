@@ -1,0 +1,50 @@
+on:
+  push:
+    tags:
+      - slackware-generic-smp/*
+jobs:
+  build-slackware-generic-smp:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: ./slackware.sh
+        env:
+          # https://mirrors.slackware.com/slackware/slackware-15.0/patches/packages/
+          SLACKWARE_LINUX_KERNEL_SOURCE_PATH: slackware-15.0/patches/packages/linux-5.15.193/kernel-source-5.15.193_smp-noarch-1.txz
+          SLACKWARE_LINUX_CONFIG_PATH: slackware-15.0/patches/source/linux-5.15.193/kernel-configs/config-generic-smp-5.15.193-smp
+          SLACKWARE_LINUX_KERNEL_SOURCE_SHA256: 6b69dc20bf605da1983575c0f241e4fc26a7553d8eaed0b311e1e8ee434315ec
+          SLACKWARE_LINUX_CONFIG_SHA256: 7737da6607a6f11a6baafeb2fcc1bb88f8c0e660122d6594f76914316448e017
+          # https://hub.docker.com/_/debian
+          DEBIAN_TAG: unstable-20250929
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slackware-generic-smp
+          path: |
+            slackware/kernel-source/usr/src/*.deb
+            slackware/kernel-source/usr/src/linux-upstream_*.*
+  attest-slackware-generic-smp:
+    runs-on: ubuntu-24.04
+    needs: build-slackware-generic-smp
+    permissions:
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: slackware-generic-smp
+          pattern: linux-upstream_*.changes
+      - uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: linux-upstream_*.changes
+  release-slackware-generic-smp:
+    runs-on: ubuntu-24.04
+    needs: attest-slackware-generic-smp
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: slackware-generic-smp
+      - run: gh -R ${{ github.repository }} release create ${{ github.ref_name }} *.deb linux-upstream_*.*
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
