@@ -1,0 +1,54 @@
+on:
+  push:
+    tags:
+      - void/*
+jobs:
+  build-void:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          cat /mnt/DATALOSS_WARNING_README.txt
+          sudo mkdir /mnt/builddir
+          ln -s /mnt/builddir .
+      - run: ./void.sh
+        env:
+          # https://github.com/void-linux/void-packages/blob/master/srcpkgs/linux/template
+          # https://github.com/void-linux/void-packages/tree/master/srcpkgs/linux6.12
+          VOID_PACKAGES_COMMIT: b34e891f56b9f38daaddb845eb71a607e62d7c24
+          # https://github.com/void-linux/void-containers/pkgs/container/void-glibc-full
+          VOID_TAG: 20251001r1
+          # https://hub.docker.com/_/debian
+          DEBIAN_TAG: unstable-20250929
+      - uses: actions/upload-artifact@v4
+        with:
+          name: void
+          path: |
+            builddir/*.deb
+            builddir/linux-upstream_*.*
+  attest-void:
+    runs-on: ubuntu-24.04
+    needs: build-void
+    permissions:
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: void
+          pattern: linux-upstream_*.changes
+      - uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: linux-upstream_*.changes
+  release-void:
+    runs-on: ubuntu-24.04
+    needs: attest-void
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: void
+      - run: gh -R ${{ github.repository }} release create ${{ github.ref_name }} *.deb linux-upstream_*.*
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
