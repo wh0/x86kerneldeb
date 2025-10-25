@@ -14,7 +14,7 @@ jobs:
           # https://hub.docker.com/r/adelielinux/adelie
           ADELIE_TAG: 1.0-beta6
           # https://hub.docker.com/_/debian
-          DEBIAN_TAG: unstable-20250929
+          DEBIAN_TAG: unstable-20251020⁠
       - uses: actions/upload-artifact@v4
         with:
           name: adelie-easy
