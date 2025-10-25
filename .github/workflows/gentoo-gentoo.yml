@@ -10,7 +10,7 @@ jobs:
       - run: ./gentoo.sh
         env:
           # https://hub.docker.com/r/gentoo/stage3
-          GENTOO_TAG: 20251015
+          GENTOO_TAG: 20251020
           # https://packages.gentoo.org/packages/sys-kernel/gentoo-kernel
           GENTOO_VERSION: 6.12.47
           # https://hub.docker.com/_/debian
