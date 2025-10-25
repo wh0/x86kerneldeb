@@ -10,7 +10,7 @@ jobs:
       - run: ./alpine.sh
         env:
           # https://gitlab.alpinelinux.org/alpine/aports/-/tree/master/main/linux-lts
-          APORTS_COMMIT: 60da4253ce7fa1749cb48133dfa6786d554b8e04
+          APORTS_COMMIT: 2ee1b683b56b997fcd35d97959963ae180a829be
           # https://hub.docker.com/_/alpine
           ALPINE_TAG: 20250108
           # https://hub.docker.com/_/debian
