@@ -19,7 +19,7 @@ jobs:
           # https://github.com/void-linux/void-containers/pkgs/container/void-glibc-full
           VOID_TAG: 20251001r1
           # https://hub.docker.com/_/debian
-          DEBIAN_TAG: unstable-20251020⁠
+          DEBIAN_TAG: unstable-20251020
       - uses: actions/upload-artifact@v4
         with:
           name: void

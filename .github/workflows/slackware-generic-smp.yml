@@ -15,7 +15,7 @@ jobs:
           SLACKWARE_LINUX_KERNEL_SOURCE_SHA256: 6b69dc20bf605da1983575c0f241e4fc26a7553d8eaed0b311e1e8ee434315ec
           SLACKWARE_LINUX_CONFIG_SHA256: 7737da6607a6f11a6baafeb2fcc1bb88f8c0e660122d6594f76914316448e017
           # https://hub.docker.com/_/debian
-          DEBIAN_TAG: unstable-20251020⁠
+          DEBIAN_TAG: unstable-20251020
       - uses: actions/upload-artifact@v4
         with:
           name: slackware-generic-smp

@@ -11,7 +11,7 @@ jobs:
         env:
           # https://software.opensuse.org/package/kernel-default
           # https://hub.docker.com/_/debian
-          DEBIAN_TAG: unstable-20251020⁠
+          DEBIAN_TAG: unstable-20251020
       - uses: actions/upload-artifact@v4
         with:
           name: opensuse-default
