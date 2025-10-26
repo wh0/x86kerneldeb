@@ -1,0 +1,7 @@
+on: push
+jobs:
+  connect:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: sudo apt install traceroute
+      - run: traceroute git.adelielinux.org
