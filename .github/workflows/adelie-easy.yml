@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: ./adelie.sh
         env:
+          PACKAGES_REMOTE: https://github.com/wh0/adelie-packages.git
           # https://git.adelielinux.org/adelie/packages/-/tree/current/system/easy-kernel
           PACKAGES_COMMIT: 8d373cee60231d35782f34c4a9777d7fde352bf5
           # https://hub.docker.com/r/adelielinux/adelie

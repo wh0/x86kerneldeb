@@ -2,7 +2,7 @@
 git init packages
 (
 	cd packages
-	git remote add origin https://git.adelielinux.org/adelie/packages.git
+	git remote add origin "${PACKAGES_REMOTE:-https://git.adelielinux.org/adelie/packages.git}"
 	git fetch origin "${PACKAGES_COMMIT:-current}" --depth 1
 	git checkout FETCH_HEAD
 )
