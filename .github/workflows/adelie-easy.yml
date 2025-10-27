@@ -21,8 +21,8 @@ jobs:
         with:
           name: adelie-easy
           path: |
-            packages/system/easy-kernel/src/*.deb
-            packages/system/easy-kernel/src/linux-upstream_*.*
+            adelie-packages/system/easy-kernel/src/*.deb
+            adelie-packages/system/easy-kernel/src/linux-upstream_*.*
   attest-adelie-easy:
     runs-on: ubuntu-24.04
     needs: build-adelie-easy
