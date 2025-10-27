@@ -20,7 +20,7 @@ EOF
 
 docker run --rm -i --platform linux/386 -v ./adelie-packages:/root/adelie-packages "adelielinux/adelie:${ADELIE_TAG:-latest}" <<EOF
 set -eux
-echo "${ADELIE_MIRROR:-https://distfiles.adelielinux.org/adelie/current/system}" >/etc/apk/repositories
+echo "${ADELIE_MIRROR:-https://distfiles.adelielinux.org}/adelie/current/system" >/etc/apk/repositories
 apk add build-tools
 cd /root/adelie-packages/system/easy-kernel
 newgrp abuild <<'NEWGRP_EOF'
