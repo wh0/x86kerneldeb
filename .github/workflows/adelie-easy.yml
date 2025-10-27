@@ -14,6 +14,7 @@ jobs:
           PACKAGES_COMMIT: 8d373cee60231d35782f34c4a9777d7fde352bf5
           # https://hub.docker.com/r/adelielinux/adelie
           ADELIE_TAG: 1.0-beta6
+          # https://www.adelielinux.org/mirrors/
           ADELIE_MIRROR: https://plug-mirror.rcac.purdue.edu/adelie
           # https://hub.docker.com/_/debian
           DEBIAN_TAG: unstable-20251020
