@@ -24,6 +24,7 @@ echo "${ADELIE_MIRROR:-https://distfiles.adelielinux.org}/adelie/current/system"
 apk add build-tools
 cd /root/adelie-packages/system/easy-kernel
 newgrp abuild <<'NEWGRP_EOF'
+set -eux
 abuild -Fr builddeps fetch unpack prepare
 NEWGRP_EOF
 EOF
