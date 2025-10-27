@@ -16,6 +16,8 @@ jobs:
           ADELIE_TAG: 1.0-beta6
           # https://www.adelielinux.org/mirrors/
           ADELIE_MIRROR: https://plug-mirror.rcac.purdue.edu/adelie
+          # https://distfiles.adelielinux.org/source/archive/
+          DISTFILES_MIRROR: https://plug-mirror.rcac.purdue.edu/adelie/source/archive/easy-kernel-6.6.58-mc2-6.6.58
           # https://hub.docker.com/_/debian
           DEBIAN_TAG: unstable-20251020
       - uses: actions/upload-artifact@v4
