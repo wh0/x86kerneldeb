@@ -14,15 +14,18 @@ jobs:
           PACKAGES_COMMIT: 8d373cee60231d35782f34c4a9777d7fde352bf5
           # https://hub.docker.com/r/adelielinux/adelie
           ADELIE_TAG: 1.0-beta6
-          ADELIE_MIRROR: https://plug-mirror.rcac.purdue.edu/adelie/adelie/current/system
+          # https://www.adelielinux.org/mirrors/
+          ADELIE_MIRROR: https://plug-mirror.rcac.purdue.edu/adelie
+          # https://distfiles.adelielinux.org/source/archive/
+          DISTFILES_MIRROR: https://plug-mirror.rcac.purdue.edu/adelie/source/archive/easy-kernel-6.6.58-mc2-6.6.58
           # https://hub.docker.com/_/debian
           DEBIAN_TAG: unstable-20251020
       - uses: actions/upload-artifact@v4
         with:
           name: adelie-easy
           path: |
-            packages/system/easy-kernel/src/*.deb
-            packages/system/easy-kernel/src/linux-upstream_*.*
+            adelie-packages/system/easy-kernel/src/*.deb
+            adelie-packages/system/easy-kernel/src/linux-upstream_*.*
   attest-adelie-easy:
     runs-on: ubuntu-24.04
     needs: build-adelie-easy
