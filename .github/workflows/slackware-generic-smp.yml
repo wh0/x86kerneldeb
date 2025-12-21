@@ -32,7 +32,6 @@ jobs:
       - uses: actions/download-artifact@v5
         with:
           name: slackware-generic-smp
-          pattern: linux-upstream_*.changes
       - uses: actions/attest-build-provenance@v3
         with:
           subject-path: linux-upstream_*.changes

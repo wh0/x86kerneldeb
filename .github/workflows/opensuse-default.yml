@@ -28,7 +28,6 @@ jobs:
       - uses: actions/download-artifact@v5
         with:
           name: opensuse-default
-          pattern: kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.changes
       - uses: actions/attest-build-provenance@v3
         with:
           subject-path: kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.changes

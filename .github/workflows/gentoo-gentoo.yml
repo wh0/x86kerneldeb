@@ -34,7 +34,6 @@ jobs:
       - uses: actions/download-artifact@v5
         with:
           name: gentoo-gentoo
-          pattern: gentoo-kernel-*/work/linux-upstream_*.changes
       - uses: actions/attest-build-provenance@v3
         with:
           subject-path: gentoo-kernel-*/work/linux-upstream_*.changes
