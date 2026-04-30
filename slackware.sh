@@ -17,7 +17,7 @@ apt-get install -y build-essential \
 	bc rsync kmod cpio bison flex libssl-dev:native \
 	python3 libelf-dev
 cd /root/slackware
-mkdir kernel-source
+mkdir -p kernel-source
 (
 	cd kernel-source
 	tar -xf ../kernel-source.txz
