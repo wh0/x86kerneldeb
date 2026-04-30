@@ -24,10 +24,8 @@ mkdir -p kernel-source
 	sh ./install/doinst.sh
 )
 patch -d kernel-source/usr/src/linux -p 1 <linux-b3bee1e7c3f2b1b77182302c7b2131c804175870.patch
-cp config kernel-source/usr/src/linux/.config
-(
-	cd kernel-source/usr/src/linux
-	make olddefconfig
-	make -j \$(nproc) bindeb-pkg
-)
+cd kernel-source/usr/src/linux
+cp ../../../../config .config
+make olddefconfig
+make -j \$(nproc) bindeb-pkg
 EOF
