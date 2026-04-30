@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: ./slackware.sh
         env:
+          # http://www.slackware.com/
           # https://mirrors.slackware.com/slackware/slackware-15.0/patches/packages/
           SLACKWARE_LINUX_KERNEL_SOURCE_PATH: slackware-15.0/patches/packages/linux-5.15.193/kernel-source-5.15.193_smp-noarch-1.txz
           SLACKWARE_LINUX_CONFIG_PATH: slackware-15.0/patches/source/linux-5.15.193/kernel-configs/config-generic-smp-5.15.193-smp
