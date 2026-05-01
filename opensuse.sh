@@ -1,12 +1,12 @@
 #!/bin/sh -eux
-docker run --rm -i --platform linux/386 -v ./packages:/usr/src/packages opensuse/tumbleweed <<EOF
+docker run --rm -i --platform linux/386 -v ./opensuse-packages:/usr/src/packages opensuse/tumbleweed <<EOF
 zypper -n install rpm-build
 zypper addrepo http://download.opensuse.org/source/tumbleweed/repo/oss/ main-source
 zypper -n source-install kernel-source kernel-default
 rpmbuild -bf --target i586 /usr/src/packages/SPECS/kernel-default.spec
 EOF
 
-docker run --rm -i --platform linux/386 -v ./packages:/usr/src/packages debian:${DEBIAN_TAG:-unstable} <<EOF
+docker run --rm -i --platform linux/386 -v ./opensuse-packages:/usr/src/packages debian:${DEBIAN_TAG:-unstable} <<EOF
 set -eux
 apt-get update
 apt-get install -y build-essential \

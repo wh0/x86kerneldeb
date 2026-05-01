@@ -16,8 +16,8 @@ jobs:
         with:
           name: opensuse-default
           path: |
-            packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/*.deb
-            packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.*
+            opensuse-packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/*.deb
+            opensuse-packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/linux-upstream_*.*
   attest-opensuse-default:
     runs-on: ubuntu-24.04
     needs: build-opensuse-default
