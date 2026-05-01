@@ -9,7 +9,7 @@ docker run --rm -i --platform linux/386 -v ./portage:/var/tmp/portage debian:${D
 set -eux
 apt-get update
 apt-get install -y build-essential \
-	debhelper bc bison cpio flex gcc-i686-linux-gnu kmod libelf-dev:native libssl-dev:native libssl-dev rsync
+	debhelper bc bison flex gcc-i686-linux-gnu kmod libdw-dev:native libelf-dev:native libssl-dev:native libssl-dev python3:native rsync
 cd /var/tmp/portage/sys-kernel/gentoo-kernel-*/work/build
 make -j \$(nproc) bindeb-pkg
 EOF
