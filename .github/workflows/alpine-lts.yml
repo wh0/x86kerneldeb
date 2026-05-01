@@ -6,16 +6,16 @@ jobs:
   build-alpine-lts:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: ./alpine.sh
         env:
           # https://gitlab.alpinelinux.org/alpine/aports/-/tree/master/main/linux-lts
-          APORTS_COMMIT: 2ee1b683b56b997fcd35d97959963ae180a829be
+          APORTS_COMMIT: 96dd49971b76c19ba48c27271ba19cbee0ada98a
           # https://hub.docker.com/_/alpine
-          ALPINE_TAG: 20250108
+          ALPINE_TAG: 20260127
           # https://hub.docker.com/_/debian
-          DEBIAN_TAG: unstable-20251020
-      - uses: actions/upload-artifact@v4
+          DEBIAN_TAG: unstable-20260421
+      - uses: actions/upload-artifact@v7
         with:
           name: alpine-lts
           path: |
@@ -28,10 +28,10 @@ jobs:
       id-token: write
       attestations: write
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v8
         with:
           name: alpine-lts
-      - uses: actions/attest-build-provenance@v3
+      - uses: actions/attest@v4
         with:
           subject-path: linux-upstream_*.changes
   release-alpine-lts:
@@ -40,7 +40,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v8
         with:
           name: alpine-lts
       - run: gh -R ${{ github.repository }} release create ${{ github.ref_name }} *.deb linux-upstream_*.*
