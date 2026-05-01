@@ -3,7 +3,7 @@ git init aports
 (
 	cd aports
 	git remote add origin https://gitlab.alpinelinux.org/alpine/aports.git
-	git fetch origin "${PORTS_COMMIT:-master}" --depth 1
+	git fetch origin "${APORTS_COMMIT:-master}" --depth 1
 	git checkout FETCH_HEAD
 )
 
