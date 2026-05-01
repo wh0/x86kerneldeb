@@ -20,7 +20,7 @@ docker run --rm -i --platform linux/i386 -v ./builddir:/builddir "debian:${DEBIA
 set -eux
 apt-get update
 apt-get install -y build-essential \
-	debhelper bc bison cpio flex kmod libelf-dev:native libssl-dev:native libssl-dev rsync
+	debhelper bc bison cpio flex gcc-i686-linux-gnu kmod libelf-dev:native libssl-dev:native libssl-dev rsync
 cd /builddir/linux*-*
 ./scripts/config \
 	--set-str CONFIG_LOCALVERSION -1
