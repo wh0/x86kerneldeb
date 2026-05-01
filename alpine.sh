@@ -18,7 +18,7 @@ docker run --rm -i --platform linux/i386 -v ./aports:/root/aports "debian:${DEBI
 set -eux
 apt-get update
 apt-get install -y build-essential \
-	debhelper bc bison cpio flex kmod libelf-dev:native libssl-dev:native libssl-dev rsync
+	debhelper bc bison cpio flex gcc-i686-linux-gnu kmod libelf-dev:native libssl-dev:native libssl-dev rsync
 cd /root/aports/main/linux-lts/src/build-lts.x86
 ../linux-*/scripts/config \
 	-d CONFIG_MODULE_COMPRESS_GZIP \
