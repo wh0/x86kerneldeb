@@ -10,7 +10,7 @@ docker run --rm -i --platform linux/386 -v ./opensuse-packages:/usr/src/packages
 set -eux
 apt-get update
 apt-get install -y build-essential \
-	debhelper bc bison cpio flex kmod libdw-dev:native libelf-dev:native libssl-dev:native libssl-dev python3:native rsync \
+	debhelper bc bison flex gcc-i686-linux-gnu kmod libdw-dev:native libelf-dev:native libssl-dev:native libssl-dev python3:native rsync \
 	gawk
 cd /usr/src/packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/linux-obj
 patch -p 0 -d .. <<'PATCH_EOF'
