@@ -29,7 +29,7 @@ DISTFILES_MIRROR=${DISTFILES_MIRROR-} abuild -Fr builddeps fetch unpack prepare
 NEWGRP_EOF
 EOF
 
-docker run --rm -i --platform linux/i386 -v ./adelie-packages:/root/adelie-packages -v ./patches:/root/patches "debian:${DEBIAN_TAG:-unstable}" <<EOF
+docker run --rm -i --platform linux/386 -v ./adelie-packages:/root/adelie-packages -v ./patches:/root/patches "debian:${DEBIAN_TAG:-unstable}" <<EOF
 set -eux
 apt-get update
 apt-get install -y build-essential \
