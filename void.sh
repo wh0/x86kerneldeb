@@ -13,7 +13,7 @@ xbps-install -Sy bash git base-devel
 git config --global --add safe.directory /root/void-packages
 cd /root/void-packages
 ln -s / masterdir
-XBPS_CHROOT_CMD=ethereal XBPS_ALLOW_CHROOT_BREAKOUT=yes ./xbps-src configure linux6.18
+XBPS_CHROOT_CMD=ethereal XBPS_ALLOW_CHROOT_BREAKOUT=yes ./xbps-src configure $VOID_PACKAGE
 EOF
 
 docker run --rm -i --platform linux/386 -v ./builddir:/builddir "debian:${DEBIAN_TAG:-unstable}" <<EOF

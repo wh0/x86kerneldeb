@@ -16,6 +16,7 @@ jobs:
           # https://github.com/void-linux/void-packages/blob/master/srcpkgs/linux/template
           # https://github.com/void-linux/void-packages/tree/master/srcpkgs/linux6.18
           VOID_PACKAGES_COMMIT: d26a16149bf0347d8498b909e8febe6576483b20
+          VOID_PACKAGE: linux6.18
           # https://github.com/void-linux/void-containers/pkgs/container/void-glibc-full
           VOID_TAG: 20260501r1
           # https://hub.docker.com/_/debian
