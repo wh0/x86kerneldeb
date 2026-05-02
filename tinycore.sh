@@ -8,7 +8,7 @@ $TINYCORE_SRC_KERNEL_LINUX_PATCHED_SHA256  tinycore/source.tar.xz
 $TINYCORE_SRC_KERNEL_CONFIG_SHA256  tinycore/config
 EOF
 
-docker run --rm -i --platform linux/i386 -v ./tinycore:/root/tinycore "debian:${DEBIAN_TAG:-unstable}" <<EOF
+docker run --rm -i --platform linux/386 -v ./tinycore:/root/tinycore "debian:${DEBIAN_TAG:-unstable}" <<EOF
 set -eux
 apt-get update
 apt-get install -y build-essential \
