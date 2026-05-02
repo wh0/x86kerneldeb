@@ -6,7 +6,7 @@ jobs:
   build-void:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: |
           cat /mnt/DATALOSS_WARNING_README.txt
           sudo mkdir /mnt/builddir
@@ -14,13 +14,13 @@ jobs:
       - run: ./void.sh
         env:
           # https://github.com/void-linux/void-packages/blob/master/srcpkgs/linux/template
-          # https://github.com/void-linux/void-packages/tree/master/srcpkgs/linux6.12
-          VOID_PACKAGES_COMMIT: 3ae48e8b0da021afc73215011305604aac85a66a
+          # https://github.com/void-linux/void-packages/tree/master/srcpkgs/linux6.18
+          VOID_PACKAGES_COMMIT: d26a16149bf0347d8498b909e8febe6576483b20
           # https://github.com/void-linux/void-containers/pkgs/container/void-glibc-full
-          VOID_TAG: 20251001r1
+          VOID_TAG: 20260501r1
           # https://hub.docker.com/_/debian
-          DEBIAN_TAG: unstable-20251020
-      - uses: actions/upload-artifact@v4
+          DEBIAN_TAG: unstable-20260421
+      - uses: actions/upload-artifact@v7
         with:
           name: void
           path: |
@@ -33,10 +33,10 @@ jobs:
       id-token: write
       attestations: write
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v8
         with:
           name: void
-      - uses: actions/attest-build-provenance@v3
+      - uses: actions/attest@v4
         with:
           subject-path: linux-upstream_*.changes
   release-void:
@@ -45,7 +45,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v8
         with:
           name: void
       - run: gh -R ${{ github.repository }} release create ${{ github.ref_name }} *.deb linux-upstream_*.*
