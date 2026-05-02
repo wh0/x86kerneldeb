@@ -16,7 +16,7 @@ cd /usr/src/packages/BUILD/kernel-default-*-build/kernel-default-*/linux-*/linux
 patch -p 0 -d .. <<'PATCH_EOF'
 --- Makefile.orig
 +++ Makefile
-@@ -1203,3 +1203,3 @@
+@@ -1260,3 +1260,3 @@
  define filechk_suse_version
 -	\$(CONFIG_SHELL) \$(srctree)/scripts/gen-suse_version_h.sh
 +	/bin/bash \$(srctree)/scripts/gen-suse_version_h.sh
