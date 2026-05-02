@@ -10,7 +10,7 @@ $SLACKWARE_LINUX_CONFIG_SHA256  slackware/config
 2334c160fce0901263a9bdc44bead8caaeb87a97556643a798c21f94f9e40434  slackware/linux-b3bee1e7c3f2b1b77182302c7b2131c804175870.patch
 EOF
 
-docker run --rm -i --platform linux/i386 -v ./slackware:/root/slackware "debian:${DEBIAN_TAG:-unstable}" <<EOF
+docker run --rm -i --platform linux/386 -v ./slackware:/root/slackware "debian:${DEBIAN_TAG:-unstable}" <<EOF
 set -eux
 apt-get update
 apt-get install -y build-essential \
