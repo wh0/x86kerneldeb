@@ -14,7 +14,7 @@ cd /root/aports/main/linux-lts
 abuild -Fr builddeps fetch unpack prepare prepareconfigs
 EOF
 
-docker run --rm -i --platform linux/i386 -v ./aports:/root/aports "debian:${DEBIAN_TAG:-unstable}" <<EOF
+docker run --rm -i --platform linux/386 -v ./aports:/root/aports "debian:${DEBIAN_TAG:-unstable}" <<EOF
 set -eux
 apt-get update
 apt-get install -y build-essential \
