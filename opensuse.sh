@@ -2,7 +2,7 @@
 docker run --rm -i --platform linux/386 -v ./opensuse-packages:/usr/src/packages opensuse/tumbleweed <<EOF
 zypper -n install rpm-build
 zypper addrepo http://download.opensuse.org/source/tumbleweed/repo/oss/ main-source
-zypper -n source-install kernel-source kernel-default
+zypper -n source-install kernel-source${DEFAULT_VERSION:+=${DEFAULT_VERSION}} kernel-default${DEFAULT_VERSION:+=${DEFAULT_VERSION}}
 rpmbuild -bf --target i586 /usr/src/packages/SPECS/kernel-default.spec
 EOF
 
