@@ -2,6 +2,8 @@
 docker run --rm -i --platform linux/386 -v ./portage:/var/tmp/portage gentoo/stage3:${GENTOO_TAG:-latest} <<EOF
 set -eux
 emerge-webrsync -q
+getuto
+emerge -g app-alternatives/bc
 ebuild /var/db/repos/gentoo/sys-kernel/gentoo-kernel/gentoo-kernel-$GENTOO_VERSION.ebuild configure
 EOF
 
