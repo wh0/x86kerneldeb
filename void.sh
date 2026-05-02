@@ -7,7 +7,7 @@ git init void-packages
 	git checkout FETCH_HEAD
 )
 
-docker run --rm -i --platform linux/i386 -v ./void-packages:/root/void-packages -v ./builddir:/builddir "ghcr.io/void-linux/void-glibc-full:${VOID_TAG:-latest}" <<EOF
+docker run --rm -i --platform linux/386 -v ./void-packages:/root/void-packages -v ./builddir:/builddir "ghcr.io/void-linux/void-glibc-full:${VOID_TAG:-latest}" <<EOF
 set -eux
 xbps-install -Sy bash git base-devel
 git config --global --add safe.directory /root/void-packages
@@ -16,7 +16,7 @@ ln -s / masterdir
 XBPS_CHROOT_CMD=ethereal XBPS_ALLOW_CHROOT_BREAKOUT=yes ./xbps-src configure linux6.12
 EOF
 
-docker run --rm -i --platform linux/i386 -v ./builddir:/builddir "debian:${DEBIAN_TAG:-unstable}" <<EOF
+docker run --rm -i --platform linux/386 -v ./builddir:/builddir "debian:${DEBIAN_TAG:-unstable}" <<EOF
 set -eux
 apt-get update
 apt-get install -y build-essential \
