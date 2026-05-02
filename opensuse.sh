@@ -1,5 +1,6 @@
 #!/bin/sh -eux
 docker run --rm -i --platform linux/386 -v ./opensuse-packages:/usr/src/packages opensuse/tumbleweed <<EOF
+set -eux
 zypper -n install rpm-build
 zypper addrepo http://download.opensuse.org/source/tumbleweed/repo/oss/ main-source
 zypper -n source-install kernel-source${DEFAULT_VERSION:+=${DEFAULT_VERSION}} kernel-default${DEFAULT_VERSION:+=${DEFAULT_VERSION}}
