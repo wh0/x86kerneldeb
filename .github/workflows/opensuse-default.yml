@@ -10,7 +10,7 @@ jobs:
       - run: ./opensuse.sh
         env:
           # https://software.opensuse.org/package/kernel-default
-          DEFAULT_VERSION: 7.0.1
+          DEFAULT_VERSION: 7.0.2
           # https://hub.docker.com/_/debian
           DEBIAN_TAG: unstable-20260421
       - uses: actions/upload-artifact@v7
