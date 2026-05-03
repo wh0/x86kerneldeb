@@ -10,7 +10,6 @@ git init void-packages
 docker run --rm -i --platform linux/386 -v ./void-packages:/root/void-packages -v ./builddir:/builddir "ghcr.io/void-linux/void-glibc-full:${VOID_TAG:-latest}" <<EOF
 set -eux
 xbps-install -Sy bash git base-devel
-git config --global --add safe.directory /root/void-packages
 cd /root/void-packages
 ln -s / masterdir
 XBPS_CHROOT_CMD=ethereal XBPS_ALLOW_CHROOT_BREAKOUT=yes ./xbps-src configure $VOID_PACKAGE
